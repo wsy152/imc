@@ -38,8 +38,37 @@ class _HomeState extends State<Home> {
             ),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Peso KG'),
+              decoration: InputDecoration(
+                labelText: 'Peso KG',
+                labelStyle: TextStyle(color: Colors.red),
+              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.green, fontSize: 25),
             ),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'Altura',
+                labelStyle: TextStyle(color: Colors.red),
+              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.green, fontSize: 25),
+            ),
+            Container(
+              height: 50,
+              child: RaisedButton(
+                onPressed: () {},
+                child: Text(
+                  'Calcular',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+                color: Colors.red,
+              ),
+            ),
+            Text(
+              'Info',
+              style: TextStyle(fontSize: 20, color: Colors.red),
+            )
           ],
         ),
       ),
