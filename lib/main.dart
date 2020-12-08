@@ -57,88 +57,92 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Caluculadora de IMC'),
-          backgroundColor: Colors.red,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.refresh, color: Colors.white),
-              onPressed: () {
-                _resetCampos();
-              },
-            )
-          ],
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-            child: Form(
-          key: _formkey,
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Icon(
-                  Icons.person_outline,
-                  size: 120,
-                  color: Colors.red,
-                ),
-                TextFormField(
-                  // ignore: missing_return
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Insira seu peso!';
-                    }
-                  },
-                  controller: pesoController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Peso KG',
-                    labelStyle: TextStyle(color: Colors.red),
-                  ),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.green, fontSize: 25),
-                ),
-                TextFormField(
-                  controller: alturaController,
-                  // ignore: missing_return
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Insira sua altura';
-                    }
-                  },
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Altura',
-                    labelStyle: TextStyle(color: Colors.red),
-                  ),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.green, fontSize: 25),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15, bottom: 15),
-                  child: Container(
-                    height: 50,
-                    child: RaisedButton(
-                      onPressed: () {
-                        if (_formkey.currentState.validate()) {
-                          _calcular();
-                        }
-                      },
-                      child: Text(
-                        'Calcular',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
+      appBar: AppBar(
+        title: Text('Caluculadora de IMC'),
+        backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh, color: Colors.white),
+            onPressed: () {
+              _resetCampos();
+            },
+          )
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Form(
+            key: _formkey,
+            child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Icon(
+                      Icons.person_outline,
+                      size: 120,
                       color: Colors.red,
                     ),
-                  ),
+                    TextFormField(
+                      // ignore: missing_return
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Insira seu peso!';
+                        }
+                      },
+                      controller: pesoController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Peso KG',
+                        labelStyle: TextStyle(color: Colors.red),
+                      ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.green, fontSize: 25),
+                    ),
+                    TextFormField(
+                      controller: alturaController,
+                      // ignore: missing_return
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Insira sua altura';
+                        }
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Altura',
+                        labelStyle: TextStyle(color: Colors.red),
+                      ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.green, fontSize: 25),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 15),
+                      child: Container(
+                        height: 50,
+                        child: RaisedButton(
+                          onPressed: () {
+                            if (_formkey.currentState.validate()) {
+                              _calcular();
+                            }
+                          },
+                          child: Text(
+                            'Calcular',
+                            style: TextStyle(color: Colors.white, fontSize: 25),
+                          ),
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      _informText,
+                      style: TextStyle(fontSize: 20, color: Colors.red),
+                    )
+                  ],
                 ),
-                Text(
-                  _informText,
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                )
-              ],
-            ),
-          ),
-        )));
+              ),
+            )),
+      ),
+    );
   }
 }
