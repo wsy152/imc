@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
     alturaController.text = '';
     setState(() {
       _informText = '';
+      _formkey = GlobalKey<FormState>();
     });
   }
 
@@ -81,7 +82,13 @@ class _HomeState extends State<Home> {
                   size: 120,
                   color: Colors.red,
                 ),
-                TextField(
+                TextFormField(
+                  // ignore: missing_return
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Insira seu peso!';
+                    }
+                  },
                   controller: pesoController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -91,8 +98,14 @@ class _HomeState extends State<Home> {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.green, fontSize: 25),
                 ),
-                TextField(
+                TextFormField(
                   controller: alturaController,
+                  // ignore: missing_return
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Insira sua altura';
+                    }
+                  },
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: 'Altura',
@@ -106,7 +119,11 @@ class _HomeState extends State<Home> {
                   child: Container(
                     height: 50,
                     child: RaisedButton(
-                      onPressed: _calcular,
+                      onPressed: () {
+                        if (_formkey.currentState.validate()) {
+                          _calcular();
+                        }
+                      },
                       child: Text(
                         'Calcular',
                         style: TextStyle(color: Colors.white, fontSize: 25),
